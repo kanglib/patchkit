@@ -94,3 +94,22 @@ class x86_64(x86):
 class arm(Arch):
     _cs = CS_ARCH_ARM, CS_MODE_ARM
     _ks = KS_ARCH_ARM, KS_MODE_ARM
+
+class mips(Arch):
+    _cs = CS_ARCH_MIPS, CS_MODE_MIPS32
+    _ks = KS_ARCH_MIPS, KS_MODE_MIPS32
+
+    def call(self, dst): return 'jal %s;' % dst
+    def jmp(self, dst):  return 'j %s;' % dst
+
+    def ret(self): return 'jr $ra;'
+    def nop(self): return 'nop;'
+
+    def asm(self, asm, addr=0, att_syntax=False):
+        if not asm:
+            return ''
+        # asm start label for use with relative offsets
+        asm = '_PKST_:;' + asm
+
+        tmp, _ = self.ks.asm(asm, addr=addr)
+        return ''.join(map(chr, tmp))

@@ -25,6 +25,8 @@ class Context(object):
             cflags.append('-m64')
         elif machine == EM['EM_ARM']:
             self.arch = arch.arm()
+        elif machine == EM['EM_MIPS']:
+            self.arch = arch.mips()
         else:
             raise NotImplementedError("Unknown machine: %s" % machine)
 

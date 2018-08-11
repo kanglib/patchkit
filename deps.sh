@@ -10,7 +10,7 @@ echo "[*] Building Keystone"
 cd "$build"
 git clone https://github.com/keystone-engine/keystone.git
 cd keystone && mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DLLVM_TARGETS_TO_BUILD="X86;ARM" -G "Unix Makefiles" .. && make -j$(nproc)
+cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DLLVM_TARGETS_TO_BUILD="X86;ARM;Mips" -G "Unix Makefiles" .. && make -j$(nproc)
 echo
 
 echo "[*] Building Capstone"
