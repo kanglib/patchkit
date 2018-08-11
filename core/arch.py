@@ -96,8 +96,8 @@ class arm(Arch):
     _ks = KS_ARCH_ARM, KS_MODE_ARM
 
 class mips(Arch):
-    _cs = CS_ARCH_MIPS, CS_MODE_MIPS32
-    _ks = KS_ARCH_MIPS, KS_MODE_MIPS32
+    _cs = CS_ARCH_MIPS, CS_MODE_MIPS32 + CS_MODE_BIG_ENDIAN
+    _ks = KS_ARCH_MIPS, KS_MODE_MIPS32 + KS_MODE_BIG_ENDIAN
 
     def call(self, dst): return 'jal %s;' % dst
     def jmp(self, dst):  return 'j %s;' % dst
